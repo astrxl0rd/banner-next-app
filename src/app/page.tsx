@@ -4,11 +4,22 @@ import React, {useEffect, useState} from 'react';
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination, Navigation, Mousewheel} from 'swiper';
 import "swiper/swiper.min.css";
+import fetchAgent from "./services/banner.services";
 // import "swiper/modules/pagination/pagination.min.css";
 
+export const getStaticProps =async () => {
+  
+}
 
 export default function Home() {
-  const [listBanner, setListBanner] = useState([]);
+
+
+  
+    
+  
+
+
+
   return (
     <section className="bg-blueGray-100">
       <div>
@@ -32,36 +43,38 @@ export default function Home() {
             className="mySwiper"
           >
             /* nanti isi looping buat swiperslide nya */
+           
             <SwiperSlide>
             <Image
-              src="/vercel.svg"
+              src="/raze.jpg"
               alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
+              className=""
+              width={1200}
+              height={1200}
               priority
             />
             </SwiperSlide>
             <SwiperSlide>
             <Image
-              src="/vercel.svg"
+              src="/raze.jpg"
               alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
+              className=""
+              width={1200}
+              height={1200}
               priority
             />
             </SwiperSlide>
             <SwiperSlide>
             <Image
-              src="/vercel.svg"
+              src="/raze.jpg"
               alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
+              className=""
+              width={1200}
+              height={1200}
               priority
             />
             </SwiperSlide>
+            
           </Swiper>
         </div>
       </div>
