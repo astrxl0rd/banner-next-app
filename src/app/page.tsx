@@ -48,6 +48,7 @@ export default function Home() {
             spaceBetween={0}
             centeredSlides={true}
             mousewheel={true}
+            effect='cube'
             autoplay={{
               delay: 500,
               disableOnInteraction: false,
@@ -64,13 +65,13 @@ export default function Home() {
               <SwiperSlide key={index}>
                 
                 {/* { item.fullPortrait && <Image src={item.fullPortrait} alt="" height={600} width={600}  /> } */}
-               <BannerSlideshowCard key={index}
+               {item.isPlayableCharacter && <BannerSlideshowCard key={index}
                agentName={item.displayName}
                fullPortrait = {item.fullPortrait}
                bustPortrait = {item.background}
                description= {item.description}
                isPlayableCharacter={item.isPlayableCharacter}
-               />
+               />}
 
                 
               </SwiperSlide>
