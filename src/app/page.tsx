@@ -33,12 +33,9 @@ export default function Home() {
 
 
   return (
-    <section className="bg-blueGray-100">
-      <div>
-
-      </div>
+   
       <div className='w-full'>
-        <div className='flex justify-items-center'>
+        <div className=''>
           {/* {listAgent.map((item,index)=>(
           <span>
             {item}
@@ -60,7 +57,7 @@ export default function Home() {
             modules={[Pagination, Navigation, Mousewheel]}
             className="mySwiper"
           >
-            /* nanti isi looping buat swiperslide nya */
+            
             {listAgent.map((item, index) => (
               <SwiperSlide key={index}>
                 
@@ -82,6 +79,6 @@ export default function Home() {
           </Swiper>
         </div>
       </div>
-    </section>
+
   )
 }
