@@ -14,71 +14,85 @@ import BannerSlideshowCard from './components/BannerSlideShowCard';
 
 export default function Home() {
 
-  const [listAgent, setListAgent] = useState<any[]>([]);
-
-  const getApi = async () => {
-    let fetchData: any = await axios.get("https://valorant-api.com/v1/agents");
-    fetchData = fetchData.data.data;
-    setListAgent(fetchData);
-    console.log("ini isi api",fetchData);
+  const items = [
+    {
+      fullPortrait: '/raze.jpg',
+     
+    },
     
-  };
-  useEffect(() => {
+    
+    // Add more items as needed
+  ];
 
-    getApi();
+  // const [listAgent, setListAgent] = useState<any[]>([]);
+
+  // const getApi = async () => {
+  //   let fetchData: any = await axios.get("https://valorant-api.com/v1/agents");
+  //   fetchData = fetchData.data.data;
+  //   setListAgent(fetchData);
+  //   console.log("ini isi api",fetchData);
+    
+  // };
+  // useEffect(() => {
+
+  //   getApi();
     
 
-  }, [])
+  // }, [])
   
 
 
   return (
+    <div>
+      <h1>Carousell Test</h1>
+      <BannerSlideshowCard items={items}/>
+    </div>
    
-      <div className='w-full'>
-        <div className=''>
-          {/* {listAgent.map((item,index)=>(
-          <span>
-            {item}
-          </span>
-        ))} */}
-          <Swiper
-            spaceBetween={0}
-            centeredSlides={true}
-            mousewheel={true}
-            effect='cube'
-            autoplay={{
-              delay: 500,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Pagination, Navigation, Mousewheel]}
-            className="mySwiper"
-          >
+      // <div className='w-full'>
+      //   <div className=''>
+      //     {listAgent.map((item,index)=>(
+      //     <span>
+      //       {item}
+      //     </span>
+      //   ))}
+      //     <Swiper
+      //       spaceBetween={0}
+      //       centeredSlides={true}
+      //       mousewheel={true}
+      //       effect='cube'
+      //       autoplay={{
+      //         delay: 500,
+      //         disableOnInteraction: false,
+      //       }}
+      //       pagination={{
+      //         clickable: true,
+      //       }}
+      //       navigation={true}
+      //       modules={[Pagination, Navigation, Mousewheel]}
+      //       className="mySwiper"
+      //     >
             
-            {listAgent.map((item, index) => (
-              <SwiperSlide key={index}>
+      //       {listAgent.map((item, index) => (
+      //         <SwiperSlide key={index}>
                 
-                {/* { item.fullPortrait && <Image src={item.fullPortrait} alt="" height={600} width={600}  /> } */}
-               {item.isPlayableCharacter && <BannerSlideshowCard key={index}
-               agentName={item.displayName}
-               fullPortrait = {item.fullPortrait}
-               bustPortrait = {item.background}
-               description= {item.description}
-               isPlayableCharacter={item.isPlayableCharacter}
-               />}
+      //           { item.fullPortrait && <Image src={item.fullPortrait} alt="" height={600} width={600}  /> }
+      //          {item.isPlayableCharacter && <BannerSlideshowCard key={index}
+      //          agentName={item.displayName}
+      //          fullPortrait = {item.fullPortrait}
+      //          bustPortrait = {item.background}
+      //          description= {item.description}
+      //          isPlayableCharacter={item.isPlayableCharacter}
+      //          />}
 
                 
-              </SwiperSlide>
-            ))}
+      //         </SwiperSlide>
+      //       ))}
 
 
 
-          </Swiper>
-        </div>
-      </div>
+      //     </Swiper>
+      //   </div>
+      // </div>
 
   )
 }
