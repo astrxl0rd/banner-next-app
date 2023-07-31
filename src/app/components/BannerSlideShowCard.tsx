@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import { useState } from "react";
 
@@ -10,61 +9,55 @@ interface bannerSlideShowItem {
   // isPlayableCharacter: boolean;
 }
 
-interface bannerSlideShowProps{
-  items:bannerSlideShowItem[];
+interface bannerSlideShowProps {
+  items: bannerSlideShowItem[];
 }
 
-const BannerSlideShowCard: React.FC<bannerSlideShowProps>=({items})=>{
+const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const goToSlide =(index:number)=>{
+  const goToSlide = (index: number) => {
     setActiveIndex(index);
   };
 
   const goToNextSlide = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
-    
   };
 
   const goToPrevSlide = () => {
-    setActiveIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
+    setActiveIndex(
+      (prevIndex) => (prevIndex - 1 + items.length) % items.length
+    );
   };
 
   console.log(activeIndex);
-  return(
+  return (
     <>
-    <div className="relative">
-      <div className="carousel overflow-hidden">
-      {items.map((item, index) => (
-
-          <div
-            key={index}
-            className={`carousel-item ${index === activeIndex ? 'active' : ''}`}
-          >
-            {/* Your carousel item content */}
-            <img src={item.fullPortrait}  />
-          </div>
-
-        ))}
+      <div className="relative">
+        <div className="carousel overflow-hidden">
+          {items.map((item, index) => (
+            <div
+              key={index}
+              className={`carousel-item ${
+                index === activeIndex ? "active" : ""
+              }`}
+            >
+              {/* Your carousel item content */}
+              {activeIndex == index && <img src={item.fullPortrait} />}
+            </div>
+          ))}
+        </div>
+        <div className="carousel-controls absolute bottom-0 left-0 w-full flex justify-center mt-2">
+          <button className="carousel-control-btn mr-2" onClick={goToPrevSlide}>
+            Previous
+          </button>
+          <button className="carousel-control-btn" onClick={goToNextSlide}>
+            Next
+          </button>
+        </div>
       </div>
-      <div className="carousel-controls absolute bottom-0 left-0 w-full flex justify-center mt-2">
-        <button
-          className="carousel-control-btn mr-2"
-          onClick={goToPrevSlide}
-        >
-          Previous
-        </button>
-        <button
-          className="carousel-control-btn"
-          onClick={goToNextSlide}
-        >
-          Next
-        </button>
-      </div>
-    </div>
     </>
   );
-
 };
 // const BannerSlideshowCard = ({ agentName, fullPortrait, bustPortrait, description, isPlayableCharacter }: bannerSlideS) => {
 //   console.log(agentName)
@@ -87,11 +80,10 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps>=({items})=>{
 //           <img className="w-4/5  absolute z-1" src={fullPortrait} />
 //         </div>
 
-
 //       </div>
 //     </>
 
 //   )
 // }
 
-export default BannerSlideShowCard
+export default BannerSlideShowCard;
