@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import '../styles/carousel.scss'
 
 interface bannerSlideShowItem {
   // agentName: string;
@@ -15,44 +16,80 @@ interface bannerSlideShowProps {
 
 const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState('');
 
-  const goToSlide = (index: number) => {
+  const goToSlide = (index: number, direction:string) => {
     setActiveIndex(index);
+    setDirection(direction);
   };
 
   const goToNextSlide = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
+    const nextIndex = (activeIndex + 1) % items.length;
+    goToSlide(nextIndex, 'next');
   };
 
   const goToPrevSlide = () => {
-    setActiveIndex(
-      (prevIndex) => (prevIndex - 1 + items.length) % items.length
-    );
+    const prevIndex = (activeIndex - 1 + items.length) % items.length;
+    goToSlide(prevIndex, 'previous');
   };
 
-  console.log(activeIndex);
+  
   return (
     <>
-      <div className="relative">
-        <div className="carousel overflow-hidden">
+      <div className="carousel flex w-full h-[100vh]">
+        <div className="">
           {items.map((item, index) => (
             <div
-              key={index}
-              className={`carousel-item ${
-                index === activeIndex ? "active" : ""
-              }`}
-            >
+            key={index}
+            className={`carousel-item ${index === activeIndex ? 'active' : ''} ${direction === 'next' && index === activeIndex ? 'next' : ''} ${direction === 'previous' && index === activeIndex ? 'previous' : ''}`}
+          >
               {/* Your carousel item content */}
-              {activeIndex == index && <img src={item.fullPortrait} />}
+              {activeIndex == index &&
+
+
+                // <img src={item.fullPortrait} />
+                <div className="">
+
+                  <img className="w-full object-fill" src={item.fullPortrait} />
+                </div>
+
+
+              }
             </div>
           ))}
         </div>
-        <div className="carousel-controls absolute bottom-0 left-0 w-full flex justify-center mt-2">
-          <button className="carousel-control-btn mr-2" onClick={goToPrevSlide}>
-            Previous
+        <div className="carousel-controls absolute bottom-[50%] left-[4%]  flex  ">
+          <button className="carousel-control-btn mr-2"  onClick={goToPrevSlide}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="h-6 w-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
           </button>
+
+        </div>
+        <div className="carousel-controls absolute bottom-[50%] left-[94%]  flex ">
+
           <button className="carousel-control-btn" onClick={goToNextSlide}>
-            Next
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="h-6 w-6">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
           </button>
         </div>
       </div>

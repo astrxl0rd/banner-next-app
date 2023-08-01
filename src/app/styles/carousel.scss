@@ -1,0 +1,39 @@
+/* styles/carousel.css */
+.carousel {
+  display: flex;
+  overflow-x: hidden;
+  transition: transform 0.3s ease; /* Add transition for smooth slide transitions */
+  position: relative; /* Ensure the carousel container has a relative position */
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  width: 100%; /* Set the width of each carousel item to 100% */
+  opacity: 0; /* Initially hide all items */
+  position: absolute; /* Position them absolutely to overlap */
+  top: 0; /* Align all items to the top of the container */
+  left: 0; /* Start all items at the left edge of the container */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Add transitions for opacity and transform */
+}
+
+/* Active item style */
+.carousel-item.active {
+  opacity: 1;
+  transform: translateX(0); /* Move active item to the center */
+  /* Ensure the active item is stacked above others */
+}
+
+/* Inactive item style */
+.carousel-item:not(.active) {
+  transform: translateX(-100%); //Move inactive items to the left (offscreen)
+}
+
+/* Move the active item to the left when pressing "Previous" */
+.carousel-item.active.previous {
+  transform: translateX(-100%);
+}
+
+/* Move the active item to the right when pressing "Next" */
+.carousel-item.active.next {
+  transform: translateX(100%);
+}

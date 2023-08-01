@@ -17,7 +17,7 @@ export default function Home() {
       fullPortrait: "/raze.jpg",
     },
     {
-      fullPortrait: "/vercel.svg",
+      fullPortrait: "https://wallpapercave.com/wp/wp2856747.jpg",
     },
 
     // Add more items as needed
@@ -40,7 +40,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Carousell Test</h1>
+      
       <BannerSlideshowCard items={items} />
     </div>
 
