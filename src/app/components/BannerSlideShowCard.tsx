@@ -3,11 +3,11 @@ import { useState } from "react";
 import '../styles/carousel.scss'
 
 interface bannerSlideShowItem {
-  // agentName: string;
+  agentName: string;
   fullPortrait: string;
-  // bustPortrait: string;
-  // description: string;
-  // isPlayableCharacter: boolean;
+  bustPortrait: string;
+  description: string;
+  isPlayableCharacter: boolean;
 }
 
 interface bannerSlideShowProps {
@@ -17,10 +17,13 @@ interface bannerSlideShowProps {
 const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState('');
+  
 
-  const goToSlide = (index: number, direction:string) => {
-    setActiveIndex(index);
+  const goToSlide = (index: number, direction: string) => {
     setDirection(direction);
+    setTimeout(() => {
+      setActiveIndex(index);
+    }, 300); // Wait for the transition to complete before updating the active slide
   };
 
   const goToNextSlide = () => {
@@ -33,24 +36,35 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
     goToSlide(prevIndex, 'previous');
   };
 
-  
+  console.log(activeIndex);
   return (
     <>
-      <div className="carousel flex w-full h-[100vh]">
-        <div className="">
+      <div className="relative">
+        <div className="carousel">
           {items.map((item, index) => (
             <div
-            key={index}
-            className={`carousel-item ${index === activeIndex ? 'active' : ''} ${direction === 'next' && index === activeIndex ? 'next' : ''} ${direction === 'previous' && index === activeIndex ? 'previous' : ''}`}
-          >
+              key={index}
+              className={`carousel-item ${index === activeIndex ? 'active' : ''} ${direction === 'next' && index === activeIndex ? 'next' : ''} ${direction === 'previous' && index === activeIndex ? 'previous' : ''}`}
+            >
               {/* Your carousel item content */}
-              {activeIndex == index &&
+              {index == activeIndex &&
 
+                
+                <div className="flex flex-row w-full h-[100vh]">
+                  <img className="absolute -z-20 w-full h-full " src={'https://cdn.wallpapersafari.com/29/51/5mT1UG.jpg'} />
+                  <div className=" p-20" >
+                    <h1 className="text-4xl font-extrabold text-white mb-4" >{item.agentName}</h1>
+                    <br></br>
+                    <p className="text-xl text-white ">{item.description}</p>
 
-                // <img src={item.fullPortrait} />
-                <div className="">
+                  </div>
+                  {/* {{ item.fullPortrait && <Image src={item.fullPortrait} alt={""} height={600} width={600} />} } */}
+                  <div className=" justify-center relative">
 
-                  <img className="w-full object-fill" src={item.fullPortrait} />
+                    {/* <img className="  w-4/5 -right-20 opacity-70" src={item.bustPortrait} /> */}
+                    <img className="w-4/5  absolute z-1" src={item.fullPortrait} />
+                  </div>
+
                 </div>
 
 
@@ -59,7 +73,7 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
           ))}
         </div>
         <div className="carousel-controls absolute bottom-[50%] left-[4%]  flex  ">
-          <button className="carousel-control-btn mr-2"  onClick={goToPrevSlide}>
+          <button className="carousel-control-btn mr-2" onClick={goToPrevSlide}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -102,22 +116,6 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
 //     // <div>ini banner nantinya</div>
 //     <>
 
-//       <div className="grid grid-cols-2 w-full h-[100vh]">
-//         <img className = "absolute -z-20 w-full h-full "src={'https://cdn.wallpapersafari.com/29/51/5mT1UG.jpg'}/>
-//         <div className="p-20" >
-//           <h1 className="text-4xl font-extrabold text-white mb-4" >{agentName}</h1>
-//           <br></br>
-//           <p className="text-xl text-white ">{description}</p>
-
-//         </div>
-//         {/* {fullPortrait && <Image src={fullPortrait} alt={""} height={600} width={600}/> } */}
-//         <div className="flex justify-center relative">
-//           {/* <p>ewe</p> */}
-//           <img className="  w-4/5 -right-20 opacity-70" src={bustPortrait}/>
-//           <img className="w-4/5  absolute z-1" src={fullPortrait} />
-//         </div>
-
-//       </div>
 //     </>
 
 //   )

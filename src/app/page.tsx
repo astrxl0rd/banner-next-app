@@ -23,25 +23,25 @@ export default function Home() {
     // Add more items as needed
   ];
 
-  // const [listAgent, setListAgent] = useState<any[]>([]);
+  const [listAgent, setListAgent] = useState<any[]>([]);
 
-  // const getApi = async () => {
-  //   let fetchData: any = await axios.get("https://valorant-api.com/v1/agents");
-  //   fetchData = fetchData.data.data;
-  //   setListAgent(fetchData);
-  //   console.log("ini isi api",fetchData);
+  const getApi = async () => {
+    let fetchData: any = await axios.get("https://valorant-api.com/v1/agents");
+    fetchData = fetchData.data.data;
+    setListAgent(fetchData);
+    // console.log("ini isi api",fetchData);
 
-  // };
-  // useEffect(() => {
+  };
+  useEffect(() => {
 
-  //   getApi();
+    getApi();
 
-  // }, [])
+  }, [])
 
   return (
     <div>
       
-      <BannerSlideshowCard items={items} />
+      <BannerSlideshowCard items={listAgent} />
     </div>
 
     // <div className='w-full'>
