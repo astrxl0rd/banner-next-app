@@ -29,18 +29,14 @@ export default function Home() {
     let fetchData: any = await axios.get("https://valorant-api.com/v1/agents");
     fetchData = fetchData.data.data;
     setListAgent(fetchData);
-    // console.log("ini isi api",fetchData);
-
+    console.log("ini isi api", fetchData);
   };
   useEffect(() => {
-
     getApi();
-
-  }, [])
+  }, []);
 
   return (
     <div>
-      
       <BannerSlideshowCard items={listAgent} />
     </div>
 

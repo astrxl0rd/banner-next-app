@@ -2,7 +2,6 @@
 .carousel {
   display: flex;
   overflow-x: hidden;
-  transition: transform 0.3s ease; /* Add transition for smooth slide transitions */
   position: relative; /* Ensure the carousel container has a relative position */
   width: 100%;
   height: 100vh;
@@ -11,31 +10,31 @@
 .carousel-item {
   flex-shrink: 0;
   width: 100%; /* Set the width of each carousel item to 100% */
-  opacity: 0; /* Initially hide all items */
+  opacity: 1; /* Initially hide all items */
   position: absolute; /* Position them absolutely to overlap */
   top: 0; /* Align all items to the top of the container */
   left: 0; /* Start all items at the left edge of the container */
-  transition: opacity 0.9s ease, transform 0.8s ease; /* Add transitions for opacity and transform */
 }
 
 /* Active item style */
 .carousel-item.active {
   opacity: 1;
   transform: translateX(0); /* Move active item to the center */
-  /* Ensure the active item is stacked above others */
+  transition: transform 0.5s ease-in-out;
 }
 
-/* Inactive item style */
-// .carousel-item:not(.active) {
-//   transform: translateX(-100%); //Move inactive items to the left (offscreen)
-// }
-
 /* Move the active item to the left when pressing "Previous" */
-.carousel-item.active.previous {
+.carousel-item.previous {
   transform: translateX(-100%);
+}
+.carousel-item.previous-show {
+  transition: transform 0.5s ease-out;
 }
 
 // /* Move the active item to the right when pressing "Next" */
-.carousel-item.active.next {
+.carousel-item.next {
   transform: translateX(100%);
+}
+.carousel-item.next-show {
+  transition: transform 0.5s ease-in;
 }
