@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/carousel.scss";
 
 interface bannerSlideShowItem {
@@ -25,6 +25,7 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
 
   const goToNextSlide = () => {
     const nextIndex = (activeIndex + 1) % items.length;
+    console.log(nextIndex, activeIndex, items.length);
     goToSlide(nextIndex, "next");
   };
 
@@ -38,13 +39,14 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
     const prevIndex = (activeIndex - 1 + items.length) % items.length;
     let dataClass = "carousel-item";
     if (index === activeIndex) dataClass += " active";
-    if (index === nextIndex && direction !== "next")
-      dataClass += " next next-show";
-    if (index === nextIndex && direction === "next") dataClass += " next";
-    if (index === prevIndex && direction !== "previous")
-      dataClass += " previous previous-show";
-    if (index === prevIndex && direction === "previous")
-      dataClass += " previous";
+    if (index === nextIndex) {
+      if (direction === "next") dataClass += " next";
+      else dataClass += " next next-show";
+    }
+    if (index === prevIndex) {
+      if (direction === "previous") dataClass += " previous";
+      else dataClass += " previous previous-show";
+    }
     return dataClass;
   };
 
