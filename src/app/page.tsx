@@ -40,47 +40,6 @@ export default function Home() {
       <BannerSlideshowCard items={listAgent} />
     </div>
 
-    // <div className='w-full'>
-    //   <div className=''>
-    //     {listAgent.map((item,index)=>(
-    //     <span>
-    //       {item}
-    //     </span>
-    //   ))}
-    //     <Swiper
-    //       spaceBetween={0}
-    //       centeredSlides={true}
-    //       mousewheel={true}
-    //       effect='cube'
-    //       autoplay={{
-    //         delay: 500,
-    //         disableOnInteraction: false,
-    //       }}
-    //       pagination={{
-    //         clickable: true,
-    //       }}
-    //       navigation={true}
-    //       modules={[Pagination, Navigation, Mousewheel]}
-    //       className="mySwiper"
-    //     >
-
-    //       {listAgent.map((item, index) => (
-    //         <SwiperSlide key={index}>
-
-    //           { item.fullPortrait && <Image src={item.fullPortrait} alt="" height={600} width={600}  /> }
-    //          {item.isPlayableCharacter && <BannerSlideshowCard key={index}
-    //          agentName={item.displayName}
-    //          fullPortrait = {item.fullPortrait}
-    //          bustPortrait = {item.background}
-    //          description= {item.description}
-    //          isPlayableCharacter={item.isPlayableCharacter}
-    //          />}
-
-    //         </SwiperSlide>
-    //       ))}
-
-    //     </Swiper>
-    //   </div>
-    // </div>
+    
   );
 }

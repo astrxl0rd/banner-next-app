@@ -66,29 +66,55 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
           {items.map((item, index) => (
             <div key={index} className={`${assignClass(index)}`}>
               {showImage(index) && (
-                <div className="flex flex-row w-full h-[100vh]">
-                  <img
-                    className="absolute -z-20 w-full h-full object-contain"
-                    loading="lazy"
-                    src={item.fullPortrait}
-                    alt="test"
-                  />
-                  <div className=" p-20">
-                    <h1 className="text-4xl font-extrabold text-white mb-4">
+                <div className="flex h-[100vh]">
+                  <div className="flex flex-col md:flex-row">
+                    <div className="h-full items-center content-center md:w-1/2 p-4 ">
+                      <h1 className="text-4xl font-extrabold text-white mb-4">
+                        {item.description}
+                      </h1>
+                    </div>
+                    <div className="h-full md:w-1/2 p-4 bg-red-300">
+                      <h1 className="text-4xl font-extrabold text-white mb-4">
+                        {item.description}
+                      </h1>
+
+                    </div>
+                  </div>
+                  {/* <div className="flex flex-col md:flex-row">
+                    <div className="w-full md:w-1/2 p-4 bg-red-400">
                       {item.agentName}
-                    </h1>
-                    <br></br>
-                    <p className="text-xl text-white ">{item.description}</p>
-                  </div>
-                  <div className=" justify-center relative">
-                    <img
-                      className="w-4/5  absolute z-1"
-                      loading="lazy"
-                      src={item.fullPortrait}
-                      alt="test"
-                    />
-                  </div>
+
+                    </div>
+                    <div className="w-full md:w-1/2 p-4 bg-red-500">
+                      {item.agentName}
+
+                    </div>
+                  </div> */}
+
                 </div>
+                // <div className="flex flex-row w-full h-[100vh]">
+                //   <img
+                //     className="absolute -z-20 w-full h-full object-contain"
+                //     loading="lazy"
+                //     src={item.fullPortrait}
+                //     alt="test"
+                //   />
+                //   <div className=" p-20">
+                //     <h1 className="text-4xl font-extrabold text-white mb-4">
+                //       {item.agentName}
+                //     </h1>
+                //     <br></br>
+                //     <p className="text-xl text-white ">{item.description}</p>
+                //   </div>
+                //   <div className=" justify-center relative">
+                //     <img
+                //       className="w-4/5  absolute z-1"
+                //       loading="lazy"
+                //       src={item.fullPortrait}
+                //       alt="test"
+                //     />
+                //   </div>
+                // </div>
               )}
             </div>
           ))}
