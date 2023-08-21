@@ -68,6 +68,7 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     setEndX(e.touches[0].clientX);
+    console.log('ini start x',startX , 'ini end x' , endX)
   };
 
   const handleTouchEnd = () => {
@@ -76,10 +77,12 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
 
       if (deltaX > 50) {
         console.log("Swipe right");
+        goToPrevSlide();
         // Do something for swipe right
       } else if (deltaX < -50) {
         console.log("Swipe left");
         // Do something for swipe left
+        goToNextSlide();
       }
     }
 
@@ -89,14 +92,16 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
 
   return (
     <>
-      <div className="relative">
+      <div 
+      ref={containerRef}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      className="relative">
         <div className="carousel">
           {items.map((item, index) => (
             <div
-              ref={containerRef}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
+              
               key={index}
               className={`${assignClass(index)}`}
             >
