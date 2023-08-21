@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "../styles/carousel.scss";
 
 interface bannerSlideShowItem {
@@ -17,6 +17,9 @@ interface bannerSlideShowProps {
 const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState("");
+  const [startX, setStartX] = useState<number | null>(null);
+  const [endX, setEndX] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const goToSlide = (index: number, direction: string) => {
     setDirection(direction);
@@ -59,12 +62,44 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
     return false;
   };
 
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    setEndX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (startX !== null && endX !== null) {
+      const deltaX = endX - startX;
+
+      if (deltaX > 50) {
+        console.log("Swipe right");
+        // Do something for swipe right
+      } else if (deltaX < -50) {
+        console.log("Swipe left");
+        // Do something for swipe left
+      }
+    }
+
+    setStartX(null);
+    setEndX(null);
+  };
+
   return (
     <>
       <div className="relative">
         <div className="carousel">
           {items.map((item, index) => (
-            <div key={index} className={`${assignClass(index)}`}>
+            <div
+              ref={containerRef}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              key={index}
+              className={`${assignClass(index)}`}
+            >
               {showImage(index) && (
                 <div className="flex h-[100vh]">
                   <div className="flex flex-col md:flex-row">
@@ -77,7 +112,6 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
                       <h1 className="text-4xl font-extrabold text-white mb-4">
                         {item.description}
                       </h1>
-
                     </div>
                   </div>
                   {/* <div className="flex flex-col md:flex-row">
@@ -90,7 +124,6 @@ const BannerSlideShowCard: React.FC<bannerSlideShowProps> = ({ items }) => {
 
                     </div>
                   </div> */}
-
                 </div>
                 // <div className="flex flex-row w-full h-[100vh]">
                 //   <img
